@@ -7,6 +7,7 @@ Rails.application.routes.draw do
   get 'setting', to: 'users#edit'
   post 'setting', to: 'users#update'
   
-  resources :users,except: [:edit]
+  resources :users,except: [:edit,:update]
   resources :sessions,only: [:new,:create,:destroy]
+  resources :microposts
 end

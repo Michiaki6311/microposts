@@ -7,4 +7,5 @@ class User < ActiveRecord::Base
                      uniqueness:{case_sensitive:false}
     validates :age, numericality:{only_integer:true,greater_than_or_equal_to:0,less_than_or_equal_to:100}, :allow_blank => true
     has_secure_password
+    has_many :microposts
 end
