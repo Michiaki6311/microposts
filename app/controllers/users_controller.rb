@@ -23,16 +23,19 @@ class UsersController < ApplicationController
   
   def update
     if @user.update(user_params)
-      redirect_to:root
+      flash[:success] = 'プロフィールを更新しました'
+      redirect_to @user
     else
-      render :edit
+      @users = User.all
+      flash.now[:alert] = 'プロフィールの更新に失敗しました'
+      render 'edit'
     end
   end
   
   private
   
   def user_params
-    params.require(:user).permit(:name,:email,:password,:password_confirmation)
+    params.require(:user).permit(:name,:email,:password,:password_confirmation,:age,:area)
   end
   
   def set_user

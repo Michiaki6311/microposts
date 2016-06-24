@@ -1,28 +1,7 @@
 <%= form_for(@user) do |f| %>
 
   
-<% if @user.errors.present? %>
-
-    <div class="alert alert-danger">
-      
-<%= alert %>
-
-      <ul>
-        
-<% @user.errors.full_messages.each do |full_message| %>
-
-          <li>
-            
-<%= full_message %>
-
-          </li>
-        
-<% end %>
- 
-      </ul>
-    </div>
-  
-<% end %>
+<%= render 'shared/error_messages',object: f.object %>
 
 
   名前:
@@ -33,6 +12,12 @@
   Eメールアドレス:
   
 <%= f.text_field :email %>
+
+  年齢:
+<%= f.text_field :age %>
+
+  都道府県:
+<%= f.text_field :area %>
 
   
 <%= f.submit class: "btn btn-sm btn-primary" %>
