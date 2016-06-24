@@ -17,6 +17,19 @@ class UsersController < ApplicationController
     end
   end
   
+  def edit
+    @user = User.find(current_user)
+  end
+  
+  def update
+    @user = User.find(current_user)
+    if @user.update(user_params)
+      redirect_to:root
+    else
+      render :edit
+    end
+  end
+  
   private
   
   def user_params
