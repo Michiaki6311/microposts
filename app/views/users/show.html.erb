@@ -9,7 +9,15 @@
 <%= @user.name %>
 
       </h1>
-    </section>
+      <% if current_user == User.find(@user.id) %>
+      <%= link_to "followings",  followings_user_path %>
+      <br>
+      <%= link_to "followers",  followers_user_path %>
+      <% else %>
+      
+      <% end %>
+      
+      </section>
   </aside>
   <div class="col-md-8">
     

@@ -1,8 +1,14 @@
 class UsersController < ApplicationController
-  before_action :set_user,only: [:edit, :update]
+  before_action :set_current_user,only: [:edit, :update]
+  before_action :set_user, only: [:followings, :followers, :show]
   def show
-    @user = User.find(params[:id])
     @microposts = @user.microposts.order(created_at: :desc)
+    
+    # @micropost = @user.microposts.build(mi_prams)
+    # mi_params[:user_id] = @user.id
+    # @micropost = Micropost.build(mi_params)
+    
+    # @user.microposts
   end
   
   def new
@@ -33,13 +39,26 @@ class UsersController < ApplicationController
     end
   end
   
+  def followings
+    @users = @user.following_users
+  end
+  
+  def followers
+    @users = @user.follower_users
+  end
+  
   private
   
   def user_params
     params.require(:user).permit(:name,:email,:password,:password_confirmation,:age,:area)
   end
   
+  def set_current_user
+    # @user = User.find(current_user)
+    @user = current_user
+  end
+  
   def set_user
-    @user = User.find(current_user)
+    @user = User.find(params[:id])
   end
 end

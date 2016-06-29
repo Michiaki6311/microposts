@@ -1,0 +1,10 @@
+<% users.each do |user| %>
+    <table border="20" bordercolor="ffffff">
+    <tr>
+        <td>
+    <%= gravatar_for(user,options = { size: 50 }) %>
+    <%= user.name %>
+        </td>
+    </tr>
+    </table>
+<% end %>
