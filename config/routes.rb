@@ -9,7 +9,7 @@ Rails.application.routes.draw do
   # get 'followings/:id', to: 'users#followings'
   # get 'users/:id/followings'
   
-  resources :users, except: [:edit,:update] do
+  resources :users ,except: [:edit,:update] do
     member do
       get 'followings'
       get 'followers'
